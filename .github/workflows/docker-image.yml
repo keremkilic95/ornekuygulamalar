@@ -22,3 +22,13 @@ jobs:
         docker build -t keremkilic/backend:latest .   # Dockerfile'ı bu dizinden bulun
         docker login -u $DOCKER_USERNAME -p $DOCKER_PASSWORD
         docker push keremkilic/backend:latest
+
+    - name: Build and Push Frontend Docker Image
+      env:
+        DOCKER_USERNAME: ${{ secrets.DOCKER_USERNAME }}
+        DOCKER_PASSWORD: ${{ secrets.DOCKER_PASSWORD }}
+      run: |
+        cd react-express-mongodb/frontend   # frontend dizinine gidin
+        docker build -t keremkilic/frontend:latest .   # Dockerfile'ı bu dizinden bulun
+        docker login -u $DOCKER_USERNAME -p $DOCKER_PASSWORD
+        docker push keremkilic/frontend:latest
