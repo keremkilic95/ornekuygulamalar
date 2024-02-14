@@ -1,0 +1,32 @@
+name: Docker Image Pipeline
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build-and-push:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout Repository
+      uses: actions/checkout@v2
+
+    - name: Build and Push Backend Docker Image
+      env:
+        DOCKER_USERNAME: ${{ secrets.DOCKER_USERNAME }}
+        DOCKER_PASSWORD: ${{ secrets.DOCKER_PASSWORD }}
+      run: |
+        docker build -t keremkilic/backend:latest ./backend
+        docker login -u $DOCKER_USERNAME -p $DOCKER_PASSWORD
+        docker push keremkilic/backend:latest
+
+    - name: Build and Push Frontend Docker Image
+      env:
+        DOCKER_USERNAME: ${{ secrets.DOCKER_USERNAME }}
+        DOCKER_PASSWORD: ${{ secrets.DOCKER_PASSWORD }}
+      run: |
+        docker build -t keremkilic/frontend:latest ./frontend
+        docker login -u $DOCKER_USERNAME -p $DOCKER_PASSWORD
+        docker push keremkilic/frontend:latest
