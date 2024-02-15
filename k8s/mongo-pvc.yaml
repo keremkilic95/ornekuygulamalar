@@ -7,4 +7,6 @@ spec:
     - ReadWriteOnce
   resources:
     requests:
-      storage: 1Gi   # İstediğiniz depolama boyutu
+      storage: 10Gi
+  volumeName: mongo-pv
+  storageClassName: "" 
