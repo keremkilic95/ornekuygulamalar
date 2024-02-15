@@ -6,20 +6,20 @@ metadata:
     kubernetes.io/ingress.class: "nginx"
 spec:
   rules:
-  - host: a4decb6022e9740a7a5df219548b14b2-111807544.eu-west-1.elb.amazonaws.com
+  - host: a73ff72cb5414425da9faf72388a6f16-630985435.eu-west-1.elb.amazonaws.com
     http:
       paths:
       - path: /backend
         pathType: Prefix
         backend:
           service:
-            name: backend-service
+            name: backend
             port:
               number: 3000
       - path: /
         pathType: Prefix
         backend:
           service:
-            name: frontend-service
+            name: frontend
             port:
               number: 80
